@@ -1,0 +1,10 @@
+# Created by .ignore support plugin (hsz.mobi)
+/.idea/
+/financial.iml
+/api/api.iml
+/entity/entity.iml
+/manager/manager.iml
+/quartz/quartz.iml
+/saller/saller.iml
+/swagger/swagger.iml
+/unit/unit.iml
