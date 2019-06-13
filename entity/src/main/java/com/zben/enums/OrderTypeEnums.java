@@ -1,4 +1,4 @@
-package com.zben.manager.enums;
+package com.zben.enums;
 
 /**
  * @Author: zben

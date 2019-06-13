@@ -1,8 +1,8 @@
 package com.zben.manager.service;
 
-import com.zben.manager.entity.Product;
+import com.zben.entity.Product;
 import com.zben.manager.enums.ErrorEnums;
-import com.zben.manager.enums.ProductStatus;
+import com.zben.enums.ProductStatus;
 import com.zben.manager.repository.ProductRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

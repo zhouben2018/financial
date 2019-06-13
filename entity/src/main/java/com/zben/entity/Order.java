@@ -1,4 +1,4 @@
-package com.zben.manager.entity;
+package com.zben.entity;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;

@@ -1,8 +1,8 @@
 spring:
   datasource:
-    url: jdbc:mysql://127.0.0.1:3306/zb_test?useUnicode=true&amp&characterEncoding=UTF-8
+    url: jdbc:mysql://94.191.2.120:3306/manager?useUnicode=true&ampcharacterEncoding=UTF-8&useSSL=false
     username: root
-    password: root
+    password: 123456
     driver-class-name: com.mysql.jdbc.Driver
   jpa:
     show-sql: true
@@ -12,3 +12,7 @@ spring:
 server:
   port: 8081
   context-path: /manager
+
+swagger:
+  groupName: manager
+  basePackage: com.zben.manager.controller

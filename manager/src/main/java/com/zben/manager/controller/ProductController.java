@@ -1,7 +1,9 @@
 package com.zben.manager.controller;
 
-import com.zben.manager.entity.Product;
+import com.zben.entity.Product;
 import com.zben.manager.service.ProductService;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +24,7 @@ import java.util.List;
  */
 @RestController
 @RequestMapping("/products")
+@Api(description = "产品管理端")
 public class ProductController {
 
     private static Logger LOG = LoggerFactory.getLogger(ProductController.class);
@@ -29,6 +32,7 @@ public class ProductController {
     @Autowired
     ProductService productService;
 
+    @ApiOperation(value = "添加产品", notes = "根据业务规则添加相应的产品")
     @RequestMapping(value = "", method = RequestMethod.POST)
     public Product addProduct(@RequestBody Product product) {
         LOG.info("添加产品...入参 product[{}]",product);
@@ -37,6 +41,7 @@ public class ProductController {
         return result;
     }
 
+    @ApiOperation(value = "查询单个产品")
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public Product findOne(@PathVariable("id") String id) {
         LOG.info("查询单个产品...入参 id[{}]",id);
@@ -45,6 +50,7 @@ public class ProductController {
         return result;
     }
 
+    @ApiOperation(value = "搜索产品")
     @RequestMapping(value = "", method = RequestMethod.GET)
     public Page<Product> query(String ids, BigDecimal minRewardRate, BigDecimal maxRewardRate, String status,
                                @RequestParam(defaultValue = "0") int pageNum, @RequestParam(defaultValue = "10") int pageSize) {

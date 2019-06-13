@@ -1,4 +1,6 @@
-package com.zben.manager.entity;
+package com.zben.entity;
+
+import io.swagger.annotations.ApiModelProperty;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -31,6 +33,7 @@ public class Product {
     private BigDecimal rewardRate;
 
     //状态，AUDINING:审核中，IN_SELL：销售中，LOCKED：暂停销售，FINISHED：已结束
+    @ApiModelProperty(value = "状态", dataType = "com.zben.enums.ProductStatus")
     private String status;
 
     //备注

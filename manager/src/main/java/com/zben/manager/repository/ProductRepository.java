@@ -1,6 +1,6 @@
 package com.zben.manager.repository;
 
-import com.zben.manager.entity.Product;
+import com.zben.entity.Product;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 

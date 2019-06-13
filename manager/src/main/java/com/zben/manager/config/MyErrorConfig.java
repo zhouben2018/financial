@@ -1,5 +1,6 @@
-package com.zben.manager.error;
+package com.zben.manager.config;
 
+import com.zben.manager.error.MyErrorController;
 import org.springframework.beans.factory.ObjectProvider;
 import org.springframework.boot.autoconfigure.web.*;
 import org.springframework.context.annotation.Bean;
@@ -16,8 +17,8 @@ import java.util.List;
 public class MyErrorConfig {
 
     @Bean
-    public MyErrorController basicErrorController(ErrorAttributes errorAttributes,ServerProperties serverProperties,
-                                                     ObjectProvider<List<ErrorViewResolver>> errorViewResolvers) {
+    public MyErrorController basicErrorController(ErrorAttributes errorAttributes, ServerProperties serverProperties,
+                                                  ObjectProvider<List<ErrorViewResolver>> errorViewResolvers) {
         return new MyErrorController(errorAttributes, serverProperties.getError(),
                 errorViewResolvers.getIfAvailable());
     }
