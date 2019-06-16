@@ -4,6 +4,7 @@ import io.swagger.annotations.ApiModelProperty;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
 
@@ -13,8 +14,9 @@ import java.util.Date;
  * @Date: 17:13 2019/6/11
  */
 @Entity
-public class Product {
+public class Product implements Serializable {
 
+    private static final long serialVersionUID = -1035006087178668265L;
     @Id
     private String id;
 

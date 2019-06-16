@@ -1,17 +1,13 @@
 package com.zben.saller.service;
 
-import com.google.common.collect.Lists;
-import com.zben.api.ProductRpc;
-import com.zben.domain.ProductRpcReq;
 import com.zben.entity.Product;
-import com.zben.enums.ProductStatus;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationListener;
+import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.stereotype.Service;
 
-import javax.annotation.PostConstruct;
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -20,39 +16,35 @@ import java.util.List;
  * @Date: 11:12 2019/6/13
  */
 @Service
-public class ProductRpcService {
+public class ProductRpcService implements ApplicationListener<ContextRefreshedEvent>{
 
     private static Logger LOG = LoggerFactory.getLogger(ProductRpcService.class);
 
     @Autowired
-    private ProductRpc productRpc;
+    private ProductCacheService cacheService;
 
     /**
      * 查询全部产品
      */
     public List<Product> findAll() {
-        ProductRpcReq req = new ProductRpcReq();
-        List<String> statusList = new ArrayList<>();
-        statusList.add(ProductStatus.IN_SELL.name());
-        req.setStatusList(statusList);
-        LOG.info("rpc查询全部产品，请求req:{}", req);
-        List<Product> result = productRpc.query(req);
-        LOG.info("rpc查询全部产品，结果result:{}", result);
-        return result;
+        return cacheService.readAll();
     }
 
     /**
      * 查询全部产品
      */
     public Product findOne(String id) {
-        LOG.info("rpc查询单个产品，id:{}", id);
-        Product result = productRpc.findOne(id);
-        LOG.info("rpc查询单个产品，结果result:{}", result);
-        return result;
+        Product product = cacheService.findOne(id);
+        if (product == null) {
+            cacheService.releaseCache(id);
+        }
+        return product;
     }
 
-    @PostConstruct
-    public void testFindAll() {
-        findAll();
+    //容器初始化完成后会监听这个时间
+    @Override
+    public void onApplicationEvent(ContextRefreshedEvent event) {
+        List<Product> products = findAll();
+        products.forEach(product -> cacheService.putCache(product));
     }
 }
