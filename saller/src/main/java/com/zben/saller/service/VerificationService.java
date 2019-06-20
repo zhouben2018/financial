@@ -2,7 +2,7 @@ package com.zben.saller.service;
 
 import com.zben.entity.VerificationOrder;
 import com.zben.saller.enums.ChanEnum;
-import com.zben.saller.repository.VerificationRepository;
+import com.zben.saller.backuprepository.VerificationRepository;
 import org.aspectj.util.FileUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

@@ -1,5 +1,6 @@
 package com.zben.unit;
 
+import com.zben.saller.repository.OrderRepository;
 import com.zben.saller.service.VerificationService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -16,6 +17,8 @@ import java.util.Date;
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class VerifyTest {
+    @Autowired
+    private OrderRepository orderRepository;
 
     @Autowired
     VerificationService verificationService;
@@ -40,5 +43,10 @@ public class VerifyTest {
         String date = "2019-06-16 17:20:20";
         Date day = DAY_FORMAT.parse(date);
         System.out.println(verificationService.verifyOrders("111", day));
+    }
+
+    @Test
+    public void verifyBean() throws ParseException {
+        System.out.println(orderRepository.findAll());
     }
 }
