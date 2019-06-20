@@ -1,5 +1,6 @@
 package com.zben.unit;
 
+import com.zben.saller.backuprepository.OrderBackupRepository;
 import com.zben.saller.repository.OrderRepository;
 import com.zben.saller.service.VerificationService;
 import org.junit.Test;
@@ -19,6 +20,9 @@ import java.util.Date;
 public class VerifyTest {
     @Autowired
     private OrderRepository orderRepository;
+
+    @Autowired
+    private OrderBackupRepository orderBackupRepository;
 
     @Autowired
     VerificationService verificationService;
@@ -48,5 +52,6 @@ public class VerifyTest {
     @Test
     public void verifyBean() throws ParseException {
         System.out.println(orderRepository.findAll());
+        System.out.println(orderBackupRepository.findAll());
     }
 }
